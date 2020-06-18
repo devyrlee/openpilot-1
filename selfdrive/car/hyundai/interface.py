@@ -172,7 +172,7 @@ class CarInterface(CarInterfaceBase):
       ret.minSteerSpeed = 0.
     elif candidate == [CAR.KIA_NIRO_HEV, CAR.KIA_NIRO_EV]:
       ret.lateralTuning.pid.kf = 0.00005
-      ret.mass = 1737. + STD_CARGO_KG
+      ret.mass = 1425. + STD_CARGO_KG # 니로 하이브리드 무게 1425로 수정함
       ret.wheelbase = 2.7
       ret.steerRatio = 13.73   #Spec
       tire_stiffness_factor = 0.385
@@ -237,9 +237,9 @@ class CarInterface(CarInterfaceBase):
     ret.sccBus = 0 if 1056 in fingerprint[0] else 1 if 1056 in fingerprint[1] and 1296 not in fingerprint[1] \
                                                                      else 2 if 1056 in fingerprint[2] else -1
     ret.radarOffCan = ret.sccBus == -1
-    ret.openpilotLongitudinalControl = True #TODO make ui toggle
+    ret.openpilotLongitudinalControl = False #TODO make ui toggle
     ret.enableCruise = not ret.radarOffCan
-    ret.autoLcaEnabled = False
+    ret.autoLcaEnabled = True
 
     return ret
 
